@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+  <p> Do you actually want to delete "{{room.name}}" room???  </p>
+  <form action="" method="post">
+    {% csrf_token %}
+    <a href="{{ request.META.HTTP_REFERER }}">GO BACK</a>
+    <button type="submit">submit</button>
+  </form>
+{% endblock content %}

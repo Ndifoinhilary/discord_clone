@@ -1,0 +1,51 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="home-container">
+  <style>
+    .home-container {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+    }
+  </style>
+  <div>
+    <h1>Broswe Topics</h1>
+    <hr />
+    <div>
+      <a href="{% url 'rooms:home' %}">All </a>
+    </div>
+    {% for topic in topics %}
+
+    <div>
+      <a href="{% url 'rooms:home' %}?q={{topic.name}}">{{topic.name}} </a>
+    </div>
+
+    {% endfor %}
+  </div>
+  <div>
+    <h4>{{room_count}} rooms available for now ..</h4>
+    <h5><a href="{% url 'rooms:room-create' %} ">Create room </a></h5>
+    <div>
+      {% for room in rooms %}
+      <div>
+        <h3>
+          {% if request.user == room.host %}
+          <a href=" {% url 'rooms:room-update' room.id %}">update room</a>
+        </h3>
+        <h5>
+          <a href="{% url 'rooms:delete-room' room.id %} ">delete room </a>
+        </h5>
+        {% endif %}
+        <br />
+        <span>@{{room.host.username}}</span><br />
+        {{room.id}} --------
+        <a href="{% url 'rooms:room' room.id %}"> {{room.name}} </a>
+        <br /><br />
+        <small> {{room.topic.name}} </small>
+      </div>
+      <hr />
+
+      {% endfor %}
+    </div>
+  </div>
+</div>
+{% endblock content %}

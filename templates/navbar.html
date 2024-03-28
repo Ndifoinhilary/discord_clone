@@ -9,6 +9,6 @@
 <a href="{% url 'core:logout' %}">Logout</a>
 {% else %}
 <a href="{% url 'core:login' %}">Login</a>
-<a href="#">sign up</a>
+<a href="{% url 'core:signup' %}">sign up</a>
 {% endif %}
 <hr>

@@ -1,15 +1,36 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div>
-    <form action="" method="post">
-        {% csrf_token %}
-        <label for="">Username</label>
-        <input type="text" name="username" placeholder="Enter username ..">
+{% if page == 'login' %}
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <label for="">Username</label>
+            <input type="text" name="username" placeholder="Enter username ..">
+    
+            <lable>Password</lable>
+            <input type="password" name="password" id="" placeholder="Enter password">
+            <button type="submit">login</button>
+        </form>
+        <p>Don't have an account?</p>
+        <a href=" {% url 'core:signup' %}">Sign up</a>
+    </div>
+    
+    {% else %}
+    
+    <div>
+        <form action="" method="post">
+            {% csrf_token %}
 
-        <lable>Password</lable>
-        <input type="password" name="password" id="" placeholder="Enter password">
-        <button type="submit"  >login</button>
-    </form>
-  </div>
+            {{form.as_p}}
+            <button type="submit">Sign up</button>
+        </form>
+    
+        <p>Already have an account?</p>
+        <a href="  {% url 'core:login' %}">login</a>
+    </div>
+
+{% endif %}
+
+
 {% endblock content %}

@@ -1,5 +1,5 @@
 from django.urls import path, re_path
-from .views import HomeView,RoomView, CreateRoomView,UpdateRoomView,DeleteRoomView
+from .views import HomeView, RoomView, CreateRoomView, UpdateRoomView, DeleteRoomView, DeleteMessage
 
 app_name = 'rooms'
 
@@ -9,5 +9,6 @@ urlpatterns = [
     path('room/create/', CreateRoomView, name='room-create'),
     path('room/update/<int:id>/', UpdateRoomView, name='room-update'),
     path('room/delete/<int:id>/', DeleteRoomView, name='delete-room'),
+    path('room/message/<int:pk>/', DeleteMessage, name='delete-message'),
 
 ]
